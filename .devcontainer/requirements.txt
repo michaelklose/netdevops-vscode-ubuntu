@@ -1,6 +1,6 @@
 ansible==2.9.14
 asyncssh==2.4.2
-boto3==1.15.14
+boto3==1.15.16
 ciscoconfparse==1.5.19
 cryptography==3.1.1
 genie==20.9
