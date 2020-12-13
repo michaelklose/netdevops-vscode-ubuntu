@@ -1,7 +1,7 @@
 # See here for image contents: https://github.com/microsoft/vscode-dev-containers/tree/v0.140.1/containers/ubuntu/.devcontainer/base.Dockerfile
 
 # [Choice] Ubuntu version: bionic, focal
-ARG VARIANT="bionic"
+ARG VARIANT="focal"
 FROM mcr.microsoft.com/vscode/devcontainers/base:0-${VARIANT}
 
 # [Optional] Uncomment this section to install additional OS packages.
@@ -20,10 +20,11 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive && apt-get -y instal
 
 # Powershell Core & Az Modules
 RUN \
-  wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb && \
+  wget -q https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb && \
   dpkg -i packages-microsoft-prod.deb && \
   apt-get update && export DEBIAN_FRONTEND=noninteractive && \
   apt-get install -y powershell && \
+  add-apt-repository universe && \
   pwsh -Command Set-PSRepository -Name 'PSGallery' -InstallationPolicy Trusted && \
   pwsh -Command "Set-Variable -Name 'ProgressPreference' -Value 'SilentlyContinue' && Install-Module -Name Az -AllowClobber" && \
   rm packages-microsoft-prod.deb
@@ -62,7 +63,7 @@ RUN \
   apt-get -y install gh
 
 # Create Python VENV and activate it
-COPY requirements.txt /root
+COPY requirements.* /root
 RUN \
   python3 -m venv /root/venv && \
   . /root/venv/bin/activate && \
@@ -75,10 +76,5 @@ RUN \
 # Install Ansible Collections
 RUN \
   . /root/venv/bin/activate && \
-  ansible-galaxy collection install clay584.genie && \
-  ansible-galaxy collection install netbox.netbox
+  ansible-galaxy collection install -r /root/requirements.yml
 
-# Download NTC-Templates
-RUN \
-  cd /root && \
-  git clone https://github.com/networktocode/ntc-templates.git
