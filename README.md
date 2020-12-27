@@ -38,6 +38,7 @@ Container based on Ubuntu 20.04<br>
 * pyats
 * pymssql
 * pynetbox
+* pytest
 * rich
 * ttp
 
