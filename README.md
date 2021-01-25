@@ -11,6 +11,7 @@ Container based on Ubuntu 20.04<br>
 * dnsutils
 * iputils-ping
 * nmap
+* pulumi
 * pwsh
 * python3-dev
 * python3-venv

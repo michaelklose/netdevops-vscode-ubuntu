@@ -37,6 +37,11 @@ RUN \
   mv terraform /usr/local/bin && \
   rm terraform.zip
 
+# Pulumi
+RUN \
+  curl -fsSL https://get.pulumi.com | sh && \
+  echo "export PATH=$PATH:/root/.pulumi/bin" >> /root/.bashrc
+
 # AWS CLI
 RUN \
   curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
