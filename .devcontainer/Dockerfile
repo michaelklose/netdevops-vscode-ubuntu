@@ -68,11 +68,13 @@ RUN \
   apt-get -y install gh
 
 # Create Python VENV and activate it
-COPY requirements.* /root
+COPY requirements* /root/
 RUN \
   python3 -m venv /root/venv && \
   . /root/venv/bin/activate && \
-  pip3 install --no-cache-dir -r /root/requirements.txt
+  pip3 install --no-cache-dir -r /root/requirements-buildenv.txt && \
+  pip3 install --no-cache-dir -r /root/requirements.txt && \
+  pip3 install --no-cache-dir -r /root/venv/lib/python3.8/site-packages/ansible_collections/azure/azcollection/requirements-azure.txt
 
 # Adjust .bashrc
 RUN \
