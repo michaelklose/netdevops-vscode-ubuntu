@@ -26,6 +26,6 @@ pybatfish==2021.11.4.1095
 pylint==2.12.2
 pymssql==2.2.2
 pynetbox==6.2.0
-pytest==6.2.5
+pytest==9.0.3
 rich==10.15.2
 ttp==0.8.1
