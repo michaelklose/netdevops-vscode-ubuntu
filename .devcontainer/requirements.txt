@@ -23,7 +23,7 @@ nornir-utils==0.1.2
 openpyxl==3.0.9
 pyats[full]==21.10
 pybatfish==2021.11.4.1095
-pylint==2.12.2
+pylint==4.0.9
 pymssql==2.2.2
 pynetbox==6.2.0
 pytest==9.0.3
